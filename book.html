@@ -27,6 +27,11 @@
         margin: auto;
         background-image:url('bg-3.png');
         background-size:contain;
+         z-index: -1;
+    }
+
+    .Sticker{
+         z-index: 10;
     }
     
     #right_book {
@@ -99,6 +104,11 @@
        filter: grayscale(0%);
     }
 
+    .sticks{
+        height:100px;
+        cursor:pointer;
+    }
+
 
     #main {
         transition: margin-left .5s;
@@ -146,9 +156,14 @@
         <div id="Sticker" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav('Sticker')">Ⅹ</a>
              <div class="row">
-                <div class="col-md-3 draggable"><img src="" height="42" width="42"></div>
-                <div class="col-md-3"></div>
-                <div class="col-md-3"></div>
+                <div id="sticker_1" class="col-md-3 sticks" onclick="addsticker(this.id)" ><img src="sticker_1.png" width="70px"></div>
+                <div id="sticker_2" class="col-md-3 sticks" onclick="addsticker(this.id)" ><img src="sticker_2.png" width="70px"></div>
+                <div id="sticker_3" class="col-md-3 sticks" onclick="addsticker(this.id)" ><img src="sticker_3.png" width="70px"></div>
+             </div>
+             <div class="row">
+                <div id="sticker_4" class="col-md-3 sticks" onclick="addsticker(this.id)" ><img src="sticker_4.png" width="70px"></div>
+                <div id="sticker_2" class="col-md-3 sticks" onclick="addsticker(this.id)" ><img src="sticker_2.png" width="70px"></div>
+                <div id="sticker_3" class="col-md-3 sticks" onclick="addsticker(this.id)" ><img src="sticker_3.png" width="70px"></div>
              </div>
         </div>
         </div>
@@ -158,9 +173,9 @@
     <div id="container">
         <div id="Background" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav('Background')">Ⅹ</a>
-            <div id="background-img_1" class="background-img" style="  background-image:url('bg-1.png');" onclick="changebackground('bg-1.png')"></div>
-            <div id="background-img_2" class="background-img" style="  background-image:url('bg-2.png');" onclick="changebackground('bg-2.png')"></div>
-            <div id="background-img_3" class="background-img" style="  background-image:url('bg-3.png');" onclick="changebackground('bg-3.png')"></div>
+            <div id="background-img_1"  class="background-img" style="  background-image:url('bg-1.png');" onclick="changebackground(this.id)"></div>
+            <div id="background-img_2"  class="background-img" style="  background-image:url('bg-2.png');" onclick="changebackground(this.id)"></div>
+            <div id="background-img_3"  class="background-img" style="  background-image:url('bg-3.png');" onclick="changebackground(this.id)"></div>
         </div>
     </div>
 
@@ -174,8 +189,8 @@
     </div>
 
     <div id="book" class="center">
-        <div class="row">
-            <div class="col-md-6" id="left_book"></div>
+        <div  class="row">
+            <div class="col-md-6" id="left_book"><div id="add"></div></div>
             <div class="col-md-6" id="right_book"></div>
         </div>
 
@@ -192,15 +207,26 @@
     <!----------------------------------------------------------------------------------------------->
     <script>
     var opennav=0;
+    var stickers=0;
 
  $(function() {
-    $( "#sortable" ).sortable({
+    $("#sortable").sortable({
       revert: true
     });
      $(".draggable").draggable({
+      cursor:"move",   
       helper: "clone",
-      revert: false
+      scroll: false,
     });
+
+    $(".center").droppable({
+         tolerance: "intersect",
+         accept: ".draggable",
+         activeClass: "ui-state-default",
+         hoverClass: "ui-state-hover",
+         drop: function(event, ui) {$(".center").append($(ui.draggable));}
+    })
+
     $(".draggable_sort").draggable({
       connectToSortable: "#sortable",
       helper: "clone",
@@ -209,6 +235,12 @@
     $( "ul, li" ).disableSelection();
   } );
 
+function addsticker(id){
+    $("#left_book").append("<div id='sticks_" + stickers + "'" + "style='position:absolute; z-index:1000'><img src='" + id + ".png' width='83pt'></div>");
+    $("#sticks_"+stickers).draggable();
+    $("#sticks_"+stickers).resizable();
+    stickers++;
+}
 
 function openNav(id) {
     opennav++;
