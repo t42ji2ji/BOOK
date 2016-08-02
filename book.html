@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/themes/cupertino/jquery-ui.css" />
 
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
@@ -62,7 +63,7 @@
     #mySidenav a,
     #Attraction a,
     #Sticker a,
-    #Background a {
+    #Background a{
         padding: 8px 8px 8px 32px;
         text-decoration: none;
         font-size: 25px;
@@ -114,6 +115,10 @@
         transition: margin-left .5s;
         padding: 16px;
     }
+
+    .ui-icon {
+        font-size: 30em;
+    }
     
     @media screen and (max-height: 450px) {
         .sidenav {
@@ -155,15 +160,16 @@
     <div id="container">
         <div id="Sticker" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav('Sticker')">Ⅹ</a>
+            <p style="font-size:14;color:white;">Click to append in your book</p>
              <div class="row">
-                <div id="sticker_1" class="col-md-3 sticks" onclick="addsticker(this.id)" ><img src="sticker_1.png" width="70px"></div>
-                <div id="sticker_2" class="col-md-3 sticks" onclick="addsticker(this.id)" ><img src="sticker_2.png" width="70px"></div>
-                <div id="sticker_3" class="col-md-3 sticks" onclick="addsticker(this.id)" ><img src="sticker_3.png" width="70px"></div>
+                <div id="sticker_1" class="col-md-3 sticks" onclick="addsticker(this.id)" ><img src="sticker_1.png" width="75px"></div>
+                <div id="sticker_2" class="col-md-3 sticks" onclick="addsticker(this.id)" ><img src="sticker_2.png" width="75px"></div>
+                <div id="sticker_3" class="col-md-3 sticks" onclick="addsticker(this.id)" ><img src="sticker_3.png" width="75px"></div>
              </div>
              <div class="row">
-                <div id="sticker_4" class="col-md-3 sticks" onclick="addsticker(this.id)" ><img src="sticker_4.png" width="70px"></div>
-                <div id="sticker_2" class="col-md-3 sticks" onclick="addsticker(this.id)" ><img src="sticker_2.png" width="70px"></div>
-                <div id="sticker_3" class="col-md-3 sticks" onclick="addsticker(this.id)" ><img src="sticker_3.png" width="70px"></div>
+                <div id="sticker_4" class="col-md-3 sticks" onclick="addsticker(this.id)" ><img src="sticker_4.png" width="75px"></div>
+                <div id="sticker_2" class="col-md-3 sticks" onclick="addsticker(this.id)" ><img src="sticker_2.png" width="75px"></div>
+                <div id="sticker_3" class="col-md-3 sticks" onclick="addsticker(this.id)" ><img src="sticker_3.png" width="75px"></div>
              </div>
         </div>
         </div>
@@ -173,9 +179,9 @@
     <div id="container">
         <div id="Background" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav('Background')">Ⅹ</a>
-            <div id="background-img_1"  class="background-img" style="  background-image:url('bg-1.png');" onclick="changebackground(this.id)"></div>
-            <div id="background-img_2"  class="background-img" style="  background-image:url('bg-2.png');" onclick="changebackground(this.id)"></div>
-            <div id="background-img_3"  class="background-img" style="  background-image:url('bg-3.png');" onclick="changebackground(this.id)"></div>
+            <div id="bg-1"  class="background-img" style="  background-image:url('bg-1.png');" onclick="changebackground(this.id)"></div>
+            <div id="bg-2"  class="background-img" style="  background-image:url('bg-2.png');" onclick="changebackground(this.id)"></div>
+            <div id="bg-3"  class="background-img" style="  background-image:url('bg-3.png');" onclick="changebackground(this.id)"></div>
         </div>
     </div>
 
@@ -201,6 +207,10 @@
             <div class="col-md-6" style="direction:rtl">
                 <button class="btn btn-success btn-lg" type="button" style="color:white;">NEXT</button>
             </div>
+        </div>
+
+        <div id="rnd" style="display:inline-block">
+            <img id="img_rnd"  src="sticker_1.png" />
         </div>
     </div>
 
@@ -233,12 +243,34 @@
       revert: "invalid"
     });
     $( "ul, li" ).disableSelection();
-  } );
+
+  });
+
 
 function addsticker(id){
-    $("#left_book").append("<div id='sticks_" + stickers + "'" + "style='position:absolute; z-index:1000'><img src='" + id + ".png' width='83pt'></div>");
-    $("#sticks_"+stickers).draggable();
-    $("#sticks_"+stickers).resizable();
+    $("#left_book").append("<div id='sticksdiv_" + stickers + "'" + "style='position:absolute; z-index:1000;'><p class='closeStick' id='close_sticks_" + stickers + "' style='cursor:pointer;text-align:right;padding-right:5pt;'>X</p><img id='stickimg_" + stickers + "' src='" + id + ".png' width='83pt'></div>");
+    $("#sticksdiv_"+stickers).hover(function(){
+       $(this).css({'border':'#EA5455 dotted 3px'});
+        }, function(){
+            $(this).css("border","hidden");
+    });
+
+    $("#stickimg_"+stickers).hover(function(){
+       $(this).css({'cursor':'move'});
+        }, function(){
+            $(this).css('cursor','default');
+    });
+
+    $("#stickimg_"+stickers).resizable({aspectRatio: true});
+    $("#sticksdiv_"+stickers).draggable({containment: ".center", scroll: false});
+
+    
+  
+    $("#close_sticks_" + stickers).click(function(){
+       $(this).closest("div").remove();
+      //("#close_sticks_" + stickers).closest("div").remove();
+    });
+
     stickers++;
 }
 
@@ -261,7 +293,7 @@ function changebackground(url){
     // bi = style.backgroundImage.slice(4, -1);
     // alert(bi);
     $("#book").fadeOut(300,function() {
-        $("#book").css({'background-image':'url(' + url + ')','background-size':'contain'})
+        $("#book").css({'background-image':'url(' + url + '.png' + ')','background-size':'contain'})
         }).fadeIn(400,'easeInQuad');
 
     //alert(document.getElementById("id").style.background);
