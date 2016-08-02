@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <html lang="en">
-
 <head>
     <title>Bootstrap Example</title>
     <meta charset="utf-8">
@@ -9,41 +8,68 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/themes/cupertino/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/themes/cupertino/jquery-ui.css"
+    />
+
+    <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
+
 
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
 </head>
 
 <style>
+    @import url(http://fonts.googleapis.com/earlyaccess/notosanstc.css);
     body {
-        font-family: "Lato", sans-serif;
+        font-family: "Noto Sans", "Noto Sans CJK TC", sans-serif;
     }
     
     .center {
-        margin-bottom: 20px;
-        width: 952pt;
-        height: 673.3pt;
-        outline: 3px black solid;
-        margin: auto;
-        background-image:url('bg-3.png');
-        background-size:contain;
-         z-index: -1;
+        padding:0 0 0 0;
+        width: 856.8pt;
+        height: 605.97pt;
+        outline: 1px black solid;
+        margin:0 auto;
+        background-image: url('bg-3.png');
+        background-weight: contain;
+        z-index: -1;
     }
-
-    .Sticker{
-         z-index: 10;
+    
+    .Sticker {
+        z-index: 10;
     }
     
     #right_book {
-        width: 476pt;
-        height: 673.3pt;
+        width: 428.188pt;
+        height: 605.97pt;
+        
     }
+
+    
+
+    .jumbotron{
+        -webkit-filter: grayscale(20%);
+        background-image:url('tokeyo.jpg');
+        background-size:cover;
+        background-repeat: no-repeat;
+        color:white;
+        text-shadow: 2px 2px 8px black;
+        text-align:center; 
+         transition: 0.3s;
+    }
+
     
     #left_book {
-        width: 476pt;
-        height: 673.3pt;
-        border-right: 2pt green dashed;
+        width: 428.188pt;
+        height: 605.97pt;
+        border-right: 1px green dashed;
+    }
+    
+    #inner {
+        width: 428.188pt;
+        height: 605.97pt;
+        transform:scale(0.9,0.9);
+        background-color:white;
     }
     
     .sidenav {
@@ -63,7 +89,7 @@
     #mySidenav a,
     #Attraction a,
     #Sticker a,
-    #Background a{
+    #Background a {
         padding: 8px 8px 8px 32px;
         text-decoration: none;
         font-size: 25px;
@@ -71,7 +97,6 @@
         display: block;
         transition: 0.3s
     }
-
     
     #mySidenav a:hover {
         color: #f1f1f1;
@@ -85,39 +110,38 @@
         margin-left: 50px;
     }
     
-    .background-img{
-        width:250px;
-        height:150px;
-        background-image:url('bg-3.png');
-        background-size:contain;
-        border-bottom:5px black solid;
+    .background-img {
+        width: 250px;
+        height: 150px;
+        background-image: url('bg-3.png');
+        background-size: contain;
+        border-bottom: 5px black solid;
         transition: 0.3s;
-        cursor:pointer;
-
-        -webkit-filter: grayscale(100%); /* Chrome, Safari, Opera */
+        cursor: pointer;
+        -webkit-filter: grayscale(100%);
+        /* Chrome, Safari, Opera */
         filter: grayscale(100%);
-
     }
-
-
-    .background-img:hover{
-       -webkit-filter: grayscale(0%); /* Chrome, Safari, Opera */
-       filter: grayscale(0%);
+    
+    .background-img:hover {
+        -webkit-filter: grayscale(0%);
+        /* Chrome, Safari, Opera */
+        filter: grayscale(0%);
     }
-
-    .sticks{
-        height:100px;
-        cursor:pointer;
+    
+    .sticks {
+        height: 100px;
+        cursor: pointer;
+        transition: 0.2s;
     }
-
-
+    
+    .sticks:hover {
+        transform: scale(1.2, 1.2);
+    }
+    
     #main {
         transition: margin-left .5s;
         padding: 16px;
-    }
-
-    .ui-icon {
-        font-size: 30em;
     }
     
     @media screen and (max-height: 450px) {
@@ -136,7 +160,7 @@
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav('mySidenav')">Ⅹ</a>
             <a href="javascript:void(0)" onclick="openNav('Sticker')">Sticker</a>
             <a href="javascript:void(0)" onclick="openNav('Attraction')">Attraction</a>
-             <a href="javascript:void(0)" onclick="openNav('Background')">Background</a>
+            <a href="javascript:void(0)" onclick="openNav('Background')">Background</a>
         </div>
     </div>
 
@@ -161,27 +185,29 @@
         <div id="Sticker" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav('Sticker')">Ⅹ</a>
             <p style="font-size:14;color:white;">Click to append in your book</p>
-             <div class="row">
-                <div id="sticker_1" class="col-md-3 sticks" onclick="addsticker(this.id)" ><img src="sticker_1.png" width="75px"></div>
-                <div id="sticker_2" class="col-md-3 sticks" onclick="addsticker(this.id)" ><img src="sticker_2.png" width="75px"></div>
-                <div id="sticker_3" class="col-md-3 sticks" onclick="addsticker(this.id)" ><img src="sticker_3.png" width="75px"></div>
-             </div>
-             <div class="row">
-                <div id="sticker_4" class="col-md-3 sticks" onclick="addsticker(this.id)" ><img src="sticker_4.png" width="75px"></div>
-                <div id="sticker_2" class="col-md-3 sticks" onclick="addsticker(this.id)" ><img src="sticker_2.png" width="75px"></div>
-                <div id="sticker_3" class="col-md-3 sticks" onclick="addsticker(this.id)" ><img src="sticker_3.png" width="75px"></div>
-             </div>
-        </div>
+            <div class="row">
+                <div id="sticker_1" class="col-md-3 sticks" onclick="addsticker(this.id)"><img src="sticker_1.png" width="75px"></div>
+                <div id="sticker_2" class="col-md-3 sticks" onclick="addsticker(this.id)"><img src="sticker_2.png" width="75px"></div>
+                <div id="sticker_3" class="col-md-3 sticks" onclick="addsticker(this.id)"><img src="sticker_3.png" width="75px"></div>
+            </div>
+            <div class="row">
+                <div id="sticker_4" class="col-md-3 sticks" onclick="addsticker(this.id)"><img src="sticker_4.png" width="75px"></div>
+                <div id="sticker_5" class="col-md-3 sticks" onclick="addsticker(this.id)"><img src="sticker_5.png" width="75px"></div>
+                <div id="sticker_6" class="col-md-3 sticks" onclick="addsticker(this.id)"><img src="sticker_6.png" width="75px"></div>
+            </div>
         </div>
     </div>
+    </div>
 
-    
+
     <div id="container">
         <div id="Background" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav('Background')">Ⅹ</a>
-            <div id="bg-1"  class="background-img" style="  background-image:url('bg-1.png');" onclick="changebackground(this.id)"></div>
-            <div id="bg-2"  class="background-img" style="  background-image:url('bg-2.png');" onclick="changebackground(this.id)"></div>
-            <div id="bg-3"  class="background-img" style="  background-image:url('bg-3.png');" onclick="changebackground(this.id)"></div>
+            <div id="bg-1" class="background-img" style="  background-image:url('bg-1.png');" onclick="changebackground(this.id)"></div>
+            <div id="bg-2" class="background-img" style="  background-image:url('bg-2.png');" onclick="changebackground(this.id)"></div>
+            <div id="bg-3" class="background-img" style="  background-image:url('bg-3.png');" onclick="changebackground(this.id)"></div>
+            <div id="bg-4" class="background-img" style="  background-image:url('bg-4.png');" onclick="changebackground(this.id)"></div>
+            <div id="bg-5" class="background-img" style="  background-image:url('bg-5.png');" onclick="changebackground(this.id)"></div>
         </div>
     </div>
 
@@ -194,10 +220,28 @@
         <span style="font-size:30px;cursor:pointer" onclick="openNav('mySidenav')">☰ open</span>
     </div>
 
-    <div id="book" class="center">
-        <div  class="row">
-            <div class="col-md-6" id="left_book"><div id="add"></div></div>
-            <div class="col-md-6" id="right_book"></div>
+    <div id="book" class="center" style="font-family: 'Noto Sans TC', sans-serif;">
+        <div class="row" style="margin-right: 0;margin-left: 0;">
+            <div class="col-md-6" id="left_book">
+                <div id="inner">
+                    <div class="jumbotron" >
+                        <h1 style="font-weight:medium;">逢甲之旅</h1>
+                        <HR  width="50%" style="height:3px;border:none;color:white;background-color:white;">
+                        <p style="font-weight:bolder;">Fenchia</p>
+                    </div>
+
+                    <section style="padding:5pt">
+                        <h2>&nbsp景點簡介</h2>
+                        <p id="attractionDESC">&nbsp;&nbsp;&nbsp;逢甲夜市位於台中市西屯區以文華路、福星路、逢甲路為主，是全台灣最大且著名的觀光夜市，逢甲夜市的消費以『俗擱大碗』為最吸引各路愛好夜市的民眾，若遇假日其人潮更是讓逢甲夜市主幹道塞得水泄不通；逢甲夜市以新奇又有趣的小吃聞名，成為創新小吃的原始地，例如逢甲四合一、蜂蜜檸檬蘆薈、可麗餅、胡椒餅等等，都是由此逢甲夜市發源再外傳到各地的哦</p>
+                    </section>
+
+                </div>
+            </div>
+            <div class="col-md-6" id="right_book">
+                <div id="inner" style="margin-left: -30px;">
+
+                </div>
+            </div>
         </div>
 
         <div class="row" style="margin:0 auto;padding-top:20px;padding-bottom:20px;">
@@ -207,10 +251,6 @@
             <div class="col-md-6" style="direction:rtl">
                 <button class="btn btn-success btn-lg" type="button" style="color:white;">NEXT</button>
             </div>
-        </div>
-
-        <div id="rnd" style="display:inline-block">
-            <img id="img_rnd"  src="sticker_1.png" />
         </div>
     </div>
 
@@ -248,12 +288,17 @@
 
 
 function addsticker(id){
-    $("#left_book").append("<div id='sticksdiv_" + stickers + "'" + "style='position:absolute; z-index:1000;'><p class='closeStick' id='close_sticks_" + stickers + "' style='cursor:pointer;text-align:right;padding-right:5pt;'>X</p><img id='stickimg_" + stickers + "' src='" + id + ".png' width='83pt'></div>");
-    $("#sticksdiv_"+stickers).hover(function(){
-       $(this).css({'border':'#EA5455 dotted 3px'});
-        }, function(){
+    $(".jumbotron").append("<div id='sticksdiv_" + stickers + "'" + "style='position:absolute; z-index:10;'><span  class='closeStick' id='close_sticks_" + stickers + "'style='visibility:hidden;font-size:10pt;cursor:pointer;float:right;padding-right:3pt;'>X</span><img id='stickimg_" + stickers + "' src='" + id + ".png' width='83pt'></div>");
+      
+    $("#sticksdiv_"+stickers).hover(
+        function(){
+            $(this).css({'border':'#EA5455 dotted 3px'});
+            $(this).find("span").css('visibility','visible');
+        },function(){
             $(this).css("border","hidden");
+             $(this).find("span").css('visibility','hidden');
     });
+
 
     $("#stickimg_"+stickers).hover(function(){
        $(this).css({'cursor':'move'});
@@ -261,7 +306,7 @@ function addsticker(id){
             $(this).css('cursor','default');
     });
 
-    $("#stickimg_"+stickers).resizable({aspectRatio: true});
+    $("#stickimg_"+stickers).resizable({aspectRatio: true,autoHide: true});
     $("#sticksdiv_"+stickers).draggable({containment: ".center", scroll: false});
 
     
