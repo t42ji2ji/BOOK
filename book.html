@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <html lang="en">
+
 <head>
     <title>Bootstrap Example</title>
     <meta charset="utf-8">
@@ -14,8 +15,30 @@
     <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
 
 
+
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookBlock: A Content Flip Plugin - Demo 1</title>
+    <meta name="description" content="Bookblock: A Content Flip Plugin - Demo 1" />
+    <meta name="keywords" content="javascript, jquery, plugin, css3, flip, page, 3d, booklet, book, perspective" />
+    <meta name="author" content="Codrops" />
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" type="text/css" href="css/default.css" />
+    <link rel="stylesheet" type="text/css" href="css/bookblock.css" />
+    <!-- custom demo style -->
+    <link rel="stylesheet" type="text/css" href="css/demo1.css" />
+    <script src="js/modernizr.custom.js"></script>
+
+
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+
+    <style type="text/css">
+        textarea { border: none; }
+    </style>
 </head>
 
 <style>
@@ -24,14 +47,24 @@
         font-family: "Noto Sans", "Noto Sans CJK TC", sans-serif;
     }
     
-    .center {
-        padding:0 0 0 0;
+    .bb-custom-wrapper {
         width: 856.8pt;
         height: 605.97pt;
-        outline: 1px black solid;
-        margin:0 auto;
+        margin: 0 auto;
+    }
+    
+    .bb-bookblock {
+        width: 856.8pt;
+        height: 605.97pt;
+    }
+    
+    .center {
+        padding: 0 0 0 0;
+        width: 856.8pt;
+        height: 605.97pt;
+        margin: 0 auto;
         background-image: url('bg-3.png');
-        background-weight: contain;
+        background-size: contain;
         z-index: -1;
     }
     
@@ -42,22 +75,18 @@
     #right_book {
         width: 428.188pt;
         height: 605.97pt;
-        
     }
-
     
-
-    .jumbotron{
+    .jumbotron {
         -webkit-filter: grayscale(20%);
-        background-image:url('tokeyo.jpg');
-        background-size:cover;
+        background-image: url('tokeyo.jpg');
+        background-size: cover;
         background-repeat: no-repeat;
-        color:white;
+        color: white;
         text-shadow: 2px 2px 8px black;
-        text-align:center; 
-         transition: 0.3s;
+        text-align: center;
+        transition: 0.3s;
     }
-
     
     #left_book {
         width: 428.188pt;
@@ -65,11 +94,11 @@
         border-right: 1px green dashed;
     }
     
-    #inner {
+    .inner {
         width: 428.188pt;
         height: 605.97pt;
-        transform:scale(0.9,0.9);
-        background-color:white;
+        transform: scale(0.9, 0.9);
+        background-color: white;
     }
     
     .sidenav {
@@ -161,6 +190,7 @@
             <a href="javascript:void(0)" onclick="openNav('Sticker')">Sticker</a>
             <a href="javascript:void(0)" onclick="openNav('Attraction')">Attraction</a>
             <a href="javascript:void(0)" onclick="openNav('Background')">Background</a>
+            <a href="javascript:void(0)" onclick="addTextArea()">TextArea</a>
         </div>
     </div>
 
@@ -208,8 +238,11 @@
             <div id="bg-3" class="background-img" style="  background-image:url('bg-3.png');" onclick="changebackground(this.id)"></div>
             <div id="bg-4" class="background-img" style="  background-image:url('bg-4.png');" onclick="changebackground(this.id)"></div>
             <div id="bg-5" class="background-img" style="  background-image:url('bg-5.png');" onclick="changebackground(this.id)"></div>
+            <div id="bg-6" class="background-img" style="  background-image:url('bg-6.png');" onclick="changebackground(this.id)"></div>
         </div>
     </div>
+
+    
 
 
     <!----------------------------------------------------------------------------------------------->
@@ -220,44 +253,113 @@
         <span style="font-size:30px;cursor:pointer" onclick="openNav('mySidenav')">☰ open</span>
     </div>
 
-    <div id="book" class="center" style="font-family: 'Noto Sans TC', sans-serif;">
-        <div class="row" style="margin-right: 0;margin-left: 0;">
-            <div class="col-md-6" id="left_book">
-                <div id="inner">
-                    <div class="jumbotron" >
-                        <h1 style="font-weight:medium;">逢甲之旅</h1>
-                        <HR  width="50%" style="height:3px;border:none;color:white;background-color:white;">
-                        <p style="font-weight:bolder;">Fenchia</p>
+    <div class="main clearfix">
+        <div class="bb-custom-wrapper">
+            <div id="bb-bookblock" class="bb-bookblock">
+                <div class="bb-item">
+                    <div id="travelbook_0" class="center" style="font-family: 'Noto Sans TC', sans-serif;">
+                        <div class="row" style="margin-right: 0;margin-left: 0;">
+                            <div class="col-md-6 left_book" id="left_book_0">
+                                <div class="inner">
+                                    <div class="jumbotron">
+                                        <h1 style="font-weight:medium;">逢甲夜市</h1>
+                                        <HR width="50%" style="height:3px;border:none;color:white;background-color:white;">
+                                        <p style="font-weight:bolder;">Fengchia Trip</p>
+                                    </div>
+
+                                    <section style="padding:5pt;color:#3e3e3e;">
+                                        <span style="font-size:15pt;font-weight:meduim;"><i class="fa fa-circle " aria-hidden="true" style="color:orange;"></i>&nbsp;景點介紹</span>
+                                        <br>
+                                        <br>
+                                        <p id="attractionDESC" style="padding:5pt;">&nbsp;&nbsp;&nbsp;逢甲夜市位於台中市西屯區以文華路、福星路、逢甲路為主，是全台灣最大且著名的觀光夜市，逢甲夜市的消費以『俗擱大碗』為最吸引各路愛好夜市的民眾，若遇假日其人潮更是讓逢甲夜市主幹道塞得水泄不通；逢甲夜市以新奇又有趣的小吃聞名，成為創新小吃的原始地，例如逢甲四合一、蜂蜜檸檬蘆薈、可麗餅、胡椒餅等等，都是由此逢甲夜市發源再外傳到各地的哦</p>
+                                        <hr style="border-top: dashed 3px;">
+                                        <span style="font-size:15pt;font-weight:meduim;"><i class="fa fa-circle " aria-hidden="true" style="color:#56d152;"></i>&nbsp;基本資訊</span>
+                                    </section>
+
+                                    <section>
+
+                                    </section>
+                                </div>
+                            </div>
+                            <div class="col-md-6 right_book" id="right_book_0">
+                                <div class="inner" style="margin-left: -30px;">
+                                    <div style="margin:0 auto;width:500px;height:300px">
+                                        <img src="https://maps.googleapis.com/maps/api/staticmap?center=407台中市西屯區文華路100號+TW&zoom=17&size=500x300&maptype=roadmap
+                                    &markers=color:red%7Clabel:%7C407台中市西屯區文華路100號
+                                    &key=AIzaSyCDXhwIos6XBof4XeFZF9ka6sM1jQjaAKA">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                </div>
 
-                    <section style="padding:5pt">
-                        <h2>&nbsp景點簡介</h2>
-                        <p id="attractionDESC">&nbsp;&nbsp;&nbsp;逢甲夜市位於台中市西屯區以文華路、福星路、逢甲路為主，是全台灣最大且著名的觀光夜市，逢甲夜市的消費以『俗擱大碗』為最吸引各路愛好夜市的民眾，若遇假日其人潮更是讓逢甲夜市主幹道塞得水泄不通；逢甲夜市以新奇又有趣的小吃聞名，成為創新小吃的原始地，例如逢甲四合一、蜂蜜檸檬蘆薈、可麗餅、胡椒餅等等，都是由此逢甲夜市發源再外傳到各地的哦</p>
-                    </section>
+                <div class="bb-item">
+                    <div id="travelbook_1" class="center" style="font-family: 'Noto Sans TC', sans-serif;">
+                        <div class="row" style="margin-right: 0;margin-left: 0;">
+                            <div class="col-md-6 left_book" id="left_book_1">
+                                <div class="inner">
+                                    <div class="jumbotron" style="background-image:url('redvalley.jpg')">
+                                        <h1 style="font-weight:medium;">秋紅古</h1>
+                                        <HR width="50%" style="height:3px;border:none;color:white;background-color:white;">
+                                        <p style="font-weight:bolder;">Fengchia Trip</p>
+                                    </div>
 
+                                    <section style="padding:5pt;color:#3e3e3e;">
+                                        <span style="font-size:15pt;font-weight:meduim;"><i class="fa fa-circle " aria-hidden="true" style="color:orange;"></i>&nbsp;景點介紹</span>
+                                        <br>
+                                        <br>
+                                        <p id="attractionDESC" style="padding:5pt;">&nbsp;&nbsp;&nbsp;秋紅谷生態公園，又稱秋紅谷廣場、秋紅谷景觀生態公園，通常直稱秋紅谷，是位於台灣臺中市西屯區的大型滯洪池公園，由臺灣大道、朝富路、市政北七路、河南路街廓圍成，佔地30,000平方公尺。</p>
+                                        <hr style="border-top: dashed 3px;">
+                                        <span style="font-size:15pt;font-weight:meduim;"><i class="fa fa-circle " aria-hidden="true" style="color:#56d152;"></i>&nbsp;基本資訊</span>
+                                    </section>
+
+                                    <section>
+
+                                    </section>
+                                </div>
+                            </div>
+                            <div class="col-md-6 right_book" id="right_book_1">
+                                <div class="inner" style="margin-left: -30px;">
+                                    <div style="margin:0 auto;width:500px;height:300px">
+                                        <img src="https://maps.googleapis.com/maps/api/staticmap?center=407台中市西屯區文華路100號+TW&zoom=15&size=500x300&maptype=roadmap
+                                    &markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318
+                                    &markers=color:red%7Clabel:C%7C40.718217,-73.998284
+                                    &key=AIzaSyCDXhwIos6XBof4XeFZF9ka6sM1jQjaAKA">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bb-item">
+                    <a href="http://drbl.in/bAfn"><img src="images/demo1/4.jpg" alt="image04" /></a>
+                </div>
+                <div class="bb-item">
+                    <a href="http://drbl.in/dcbE"><img src="images/demo1/5.jpg" alt="image05" /></a>
                 </div>
             </div>
-            <div class="col-md-6" id="right_book">
-                <div id="inner" style="margin-left: -30px;">
 
-                </div>
-            </div>
-        </div>
-
-        <div class="row" style="margin:0 auto;padding-top:20px;padding-bottom:20px;">
-            <div class="col-md-6" style="direction:ltr">
-                <button class="btn btn-danger btn-lg" type="button" style="color:white;">PREV</button>
-            </div>
-            <div class="col-md-6" style="direction:rtl">
-                <button class="btn btn-success btn-lg" type="button" style="color:white;">NEXT</button>
-            </div>
+            <nav>
+                <a id="bb-nav-first" href="#" class="bb-custom-icon bb-custom-icon-first">First page</a>
+                <a id="bb-nav-prev" href="#" class="bb-custom-icon bb-custom-icon-arrow-left">Previous</a>
+                <a id="bb-nav-next" href="#" class="bb-custom-icon bb-custom-icon-arrow-right">Next</a>
+                <a id="bb-nav-last" href="#" class="bb-custom-icon bb-custom-icon-last">Last page</a>
+            </nav>
         </div>
     </div>
 
     <!----------------------------------------------------------------------------------------------->
+
+    <script src="js/jquerypp.custom.js"></script>
+    <script src="js/jquery.bookblock.js"></script>
+
+
     <script>
     var opennav=0;
     var stickers=0;
+    var textareas=0;
+    var page_flag=0;
 
  $(function() {
     $("#sortable").sortable({
@@ -287,8 +389,42 @@
   });
 
 
+function addTextArea(){
+    $("#travelbook_"+page_flag).append("<div id='textdiv_" + textareas + "'" + "style='position:absolute; z-index:10;left:450px;top:100px;'><span  class='closeStick' id='close_textarea_" + textareas + "'style='visibility:hidden;font-size:10pt;cursor:pointer;float:right;padding-right:3pt;'>X</span><textarea id='textarea_" + textareas + "' rows='5' cols='20' placeholder='把文字放進來'></textarea></div>");
+      
+    $("#textdiv_" + textareas).hover(
+        function(){
+            $(this).css({'border':'#EA5455 dotted 3px'});
+            $(this).find("span").css('visibility','visible');
+        },function(){
+            $(this).css("border","hidden");
+             $(this).find("span").css('visibility','hidden');
+    });
+
+
+    $("#textdiv_" + textareas).hover(function(){
+       $(this).css({'cursor':'move'});
+        }, function(){
+            $(this).css('cursor','default');
+    });
+
+    $("#textarea_" + textareas).resizable({ handles: "se",autoHide: true});
+    $("#textdiv_" + textareas).draggable({containment: ".center", scroll: false});
+
+    
+  
+    $("#close_textarea_" + textareas).click(function(){
+       $(this).closest("div").remove();
+      //("#close_sticks_" + stickers).closest("div").remove();
+    });
+
+    textareas++;
+      
+}
+
 function addsticker(id){
-    $(".jumbotron").append("<div id='sticksdiv_" + stickers + "'" + "style='position:absolute; z-index:10;'><span  class='closeStick' id='close_sticks_" + stickers + "'style='visibility:hidden;font-size:10pt;cursor:pointer;float:right;padding-right:3pt;'>X</span><img id='stickimg_" + stickers + "' src='" + id + ".png' width='83pt'></div>");
+
+    $("#travelbook_"+page_flag).append("<div id='sticksdiv_" + stickers + "'" + "style='position:absolute; z-index:10;left:450px;top:100px;'><span  class='closeStick' id='close_sticks_" + stickers + "'style='visibility:hidden;font-size:10pt;cursor:pointer;float:right;padding-right:3pt;'>X</span><img id='stickimg_" + stickers + "' src='" + id + ".png' width='83pt'></div>");
       
     $("#sticksdiv_"+stickers).hover(
         function(){
@@ -337,14 +473,104 @@ function changebackground(url){
     // style = img.currentStyle || window.getComputedStyle(img, false),
     // bi = style.backgroundImage.slice(4, -1);
     // alert(bi);
-    $("#book").fadeOut(300,function() {
-        $("#book").css({'background-image':'url(' + url + '.png' + ')','background-size':'contain'})
+    $("#travelbook_" + page_flag).fadeOut(300,function() {
+        $("#travelbook_" + page_flag).css({'background-image':'url(' + url + '.png' + ')','background-size':'contain'})
         }).fadeIn(400,'easeInQuad');
 
     //alert(document.getElementById("id").style.background);
 }
 
+/* BOOK JQUERY */
+	var Page = (function() {
+				
+				var config = {
+						$bookBlock : $( '#bb-bookblock' ),
+						$navNext : $( '#bb-nav-next' ),
+						$navPrev : $( '#bb-nav-prev' ),
+						$navFirst : $( '#bb-nav-first' ),
+						$navLast : $( '#bb-nav-last' )
+					},
+					init = function() {
+						config.$bookBlock.bookblock( {
+							speed : 800,
+							shadowSides : 0.8,
+							shadowFlip : 0.7
+						} );
+						initEvents();
+					},
+					initEvents = function() {
+						
+						var $slides = config.$bookBlock.children();
+
+						// add navigation events
+						config.$navNext.on( 'click touchstart', function() {
+							config.$bookBlock.bookblock( 'next' );
+                            if(page_flag<3){
+                                page_flag++;
+                            }
+							return false;
+						} );
+
+						config.$navPrev.on( 'click touchstart', function() {
+							config.$bookBlock.bookblock( 'prev' );
+                             if(page_flag>0){
+                                page_flag--;
+                            }
+							return false;
+						} );
+
+						config.$navFirst.on( 'click touchstart', function() {
+							config.$bookBlock.bookblock( 'first' );
+                            page_flag = 0;
+							return false;
+						} );
+
+						config.$navLast.on( 'click touchstart', function() {
+							config.$bookBlock.bookblock( 'last' );
+                            page_flag = 3;
+							return false;
+						} );
+						
+						// add swipe events
+						$slides.on( {
+							'swipeleft' : function( event ) {
+								config.$bookBlock.bookblock( 'next' );
+								return false;
+							},
+							'swiperight' : function( event ) {
+								config.$bookBlock.bookblock( 'prev' );
+								return false;
+							}
+						} );
+						// add keyboard events
+						$( document ).keydown( function(e) {
+							var keyCode = e.keyCode || e.which,
+								arrow = {
+									left : 37,
+									up : 38,
+									right : 39,
+									down : 40
+								};
+
+							switch (keyCode) {
+								case arrow.left:
+									config.$bookBlock.bookblock( 'prev' );
+									break;
+								case arrow.right:
+									config.$bookBlock.bookblock( 'next' );
+									break;
+							}
+						} );
+					};
+					return { init : init };
+			})();
+
 </script>
+    <script>
+
+
+        Page.init();
+    </script>
 
 </body>
 
