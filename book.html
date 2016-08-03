@@ -118,7 +118,8 @@
     #mySidenav a,
     #Attraction a,
     #Sticker a,
-    #Background a {
+    #Background a,
+    #TextArea a{
         padding: 8px 8px 8px 32px;
         text-decoration: none;
         font-size: 25px;
@@ -127,7 +128,7 @@
         transition: 0.3s
     }
     
-    #mySidenav a:hover {
+    #mySidenav a:hover ,#TextArea a:hover{
         color: #f1f1f1;
     }
     
@@ -162,10 +163,11 @@
         height: 100px;
         cursor: pointer;
         transition: 0.2s;
+        margin:3px;
     }
     
     .sticks:hover {
-        transform: scale(1.2, 1.2);
+        transform: scale(1.3, 1.3);
     }
     
     #main {
@@ -190,7 +192,7 @@
             <a href="javascript:void(0)" onclick="openNav('Sticker')">Sticker</a>
             <a href="javascript:void(0)" onclick="openNav('Attraction')">Attraction</a>
             <a href="javascript:void(0)" onclick="openNav('Background')">Background</a>
-            <a href="javascript:void(0)" onclick="addTextArea()">TextArea</a>
+            <a href="javascript:void(0)" onclick="openNav('TextArea')">TextArea</a>
         </div>
     </div>
 
@@ -242,6 +244,15 @@
         </div>
     </div>
 
+    <div id="container">
+        <div id="TextArea" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav('TextArea')">Ⅹ</a>
+            <a href="javascript:void(0)" onclick="addTextArea(1)">Title</a>
+            <a href="javascript:void(0)" onclick="addTextArea(0)">paragraph</a>
+        </div>
+    </div>
+
+
     
 
 
@@ -269,7 +280,7 @@
 
                                     <section style="padding:5pt;color:#3e3e3e;">
                                         <span style="font-size:15pt;font-weight:meduim;"><i class="fa fa-circle " aria-hidden="true" style="color:orange;"></i>&nbsp;景點介紹</span>
-                                        <br>
+                                       
                                         <br>
                                         <p id="attractionDESC" style="padding:5pt;">&nbsp;&nbsp;&nbsp;逢甲夜市位於台中市西屯區以文華路、福星路、逢甲路為主，是全台灣最大且著名的觀光夜市，逢甲夜市的消費以『俗擱大碗』為最吸引各路愛好夜市的民眾，若遇假日其人潮更是讓逢甲夜市主幹道塞得水泄不通；逢甲夜市以新奇又有趣的小吃聞名，成為創新小吃的原始地，例如逢甲四合一、蜂蜜檸檬蘆薈、可麗餅、胡椒餅等等，都是由此逢甲夜市發源再外傳到各地的哦</p>
                                         <hr style="border-top: dashed 3px;">
@@ -351,7 +362,7 @@
 
     <!----------------------------------------------------------------------------------------------->
 
-    <script src="js/jquerypp.custom.js"></script>
+  
     <script src="js/jquery.bookblock.js"></script>
 
 
@@ -389,9 +400,13 @@
   });
 
 
-function addTextArea(){
+function addTextArea(size){
     $("#travelbook_"+page_flag).append("<div id='textdiv_" + textareas + "'" + "style='position:absolute; z-index:10;left:450px;top:100px;'><span  class='closeStick' id='close_textarea_" + textareas + "'style='visibility:hidden;font-size:10pt;cursor:pointer;float:right;padding-right:3pt;'>X</span><textarea id='textarea_" + textareas + "' rows='5' cols='20' placeholder='把文字放進來'></textarea></div>");
-      
+    
+    if(size){
+        $("#textdiv_" + textareas).css({'font-size':'15pt','color':'#3e3e3e'});
+    }
+
     $("#textdiv_" + textareas).hover(
         function(){
             $(this).css({'border':'#EA5455 dotted 3px'});
