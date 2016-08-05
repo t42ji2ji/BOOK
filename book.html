@@ -30,14 +30,19 @@
     <link rel="stylesheet" type="text/css" href="css/bookblock.css" />
     <!-- custom demo style -->
     <link rel="stylesheet" type="text/css" href="css/demo1.css" />
-    <script src="js/modernizr.custom.js"></script>
+    <script src="js/jspdf.js"></script>
 
 
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
 
+    <!--PDF-->
+    <script src="js/modernizr.custom.js"></script>
+
     <style type="text/css">
-        textarea { border: none; }
+        textarea {
+            border: none;
+        }
     </style>
 </head>
 
@@ -119,7 +124,7 @@
     #Attraction a,
     #Sticker a,
     #Background a,
-    #TextArea a{
+    #TextArea a {
         padding: 8px 8px 8px 32px;
         text-decoration: none;
         font-size: 25px;
@@ -128,7 +133,8 @@
         transition: 0.3s
     }
     
-    #mySidenav a:hover ,#TextArea a:hover{
+    #mySidenav a:hover,
+    #TextArea a:hover {
         color: #f1f1f1;
     }
     
@@ -163,7 +169,7 @@
         height: 100px;
         cursor: pointer;
         transition: 0.2s;
-        margin:3px;
+        margin: 3px;
     }
     
     .sticks:hover {
@@ -193,6 +199,7 @@
             <a href="javascript:void(0)" onclick="openNav('Attraction')">Attraction</a>
             <a href="javascript:void(0)" onclick="openNav('Background')">Background</a>
             <a href="javascript:void(0)" onclick="openNav('TextArea')">TextArea</a>
+            <a href="javascript:void(0)" onclick="openNav('TextArea')">Image</a>
         </div>
     </div>
 
@@ -253,7 +260,7 @@
     </div>
 
 
-    
+
 
 
     <!----------------------------------------------------------------------------------------------->
@@ -280,11 +287,11 @@
 
                                     <section style="padding:5pt;color:#3e3e3e;">
                                         <span style="font-size:15pt;font-weight:meduim;"><i class="fa fa-circle " aria-hidden="true" style="color:orange;"></i>&nbsp;景點介紹</span>
-                                       
+
                                         <br>
                                         <p id="attractionDESC" style="padding:5pt;">&nbsp;&nbsp;&nbsp;逢甲夜市位於台中市西屯區以文華路、福星路、逢甲路為主，是全台灣最大且著名的觀光夜市，逢甲夜市的消費以『俗擱大碗』為最吸引各路愛好夜市的民眾，若遇假日其人潮更是讓逢甲夜市主幹道塞得水泄不通；逢甲夜市以新奇又有趣的小吃聞名，成為創新小吃的原始地，例如逢甲四合一、蜂蜜檸檬蘆薈、可麗餅、胡椒餅等等，都是由此逢甲夜市發源再外傳到各地的哦</p>
                                         <hr style="border-top: dashed 3px;">
-                                        <span style="font-size:15pt;font-weight:meduim;"><i class="fa fa-circle " aria-hidden="true" style="color:#56d152;"></i>&nbsp;基本資訊</span>
+                                        <span style="font-size:15pt;font-weight:meduim;"><i class="fa fa-circle " aria-hidden="true" style="color:#56d152;"></i>&nbsp;景點資訊</span>
                                     </section>
 
                                     <section>
@@ -294,10 +301,8 @@
                             </div>
                             <div class="col-md-6 right_book" id="right_book_0">
                                 <div class="inner" style="margin-left: -30px;">
-                                    <div style="margin:0 auto;width:500px;height:300px">
-                                        <img src="https://maps.googleapis.com/maps/api/staticmap?center=407台中市西屯區文華路100號+TW&zoom=17&size=500x300&maptype=roadmap
-                                    &markers=color:red%7Clabel:%7C407台中市西屯區文華路100號
-                                    &key=AIzaSyCDXhwIos6XBof4XeFZF9ka6sM1jQjaAKA">
+                                    <div id="map_0" style="padding-top:380pt;margin:0 auto;width:500px;height:300px">
+
                                     </div>
                                 </div>
                             </div>
@@ -356,13 +361,17 @@
                 <a id="bb-nav-prev" href="#" class="bb-custom-icon bb-custom-icon-arrow-left">Previous</a>
                 <a id="bb-nav-next" href="#" class="bb-custom-icon bb-custom-icon-arrow-right">Next</a>
                 <a id="bb-nav-last" href="#" class="bb-custom-icon bb-custom-icon-last">Last page</a>
+                <button class="btn pull-right" style="direction:rtl;margin-bottom:10pt;" id="cmd">generate PDF</button>
             </nav>
         </div>
+        <div id="editor"></div>
     </div>
+
+    <!------------------------------------------------------------------------------------------------->
 
     <!----------------------------------------------------------------------------------------------->
 
-  
+
     <script src="js/jquery.bookblock.js"></script>
 
 
@@ -371,6 +380,10 @@
     var stickers=0;
     var textareas=0;
     var page_flag=0;
+    var map=0;
+
+    ////////////////////////////////////
+    /////////////////////////////////////
 
  $(function() {
     $("#sortable").sortable({
@@ -399,6 +412,11 @@
 
   });
 
+  $(function(){
+      var i = "407台中市西屯區文華路100號";
+      $("#map_" + map ).append("<img src='https://maps.googleapis.com/maps/api/staticmap?center=" + i + "+TW&zoom=17&size=500x300&maptype=roadmap&markers=color:red%7Clabel:%7C407台中市西屯區文華路100號&key=AIzaSyCDXhwIos6XBof4XeFZF9ka6sM1jQjaAKA'>");
+  })
+
 
 function addTextArea(size){
     $("#travelbook_"+page_flag).append("<div id='textdiv_" + textareas + "'" + "style='position:absolute; z-index:10;left:450px;top:100px;'><span  class='closeStick' id='close_textarea_" + textareas + "'style='visibility:hidden;font-size:10pt;cursor:pointer;float:right;padding-right:3pt;'>X</span><textarea id='textarea_" + textareas + "' rows='5' cols='20' placeholder='把文字放進來'></textarea></div>");
@@ -415,7 +433,6 @@ function addTextArea(size){
             $(this).css("border","hidden");
              $(this).find("span").css('visibility','hidden');
     });
-
 
     $("#textdiv_" + textareas).hover(function(){
        $(this).css({'cursor':'move'});
